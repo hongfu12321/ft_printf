@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 23:23:38 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/27 00:04:46 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/29 00:04:39 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ size_t	handle_ptr_width(t_arg *args, char *address_str, size_t str_len)
 	size_t width;
 
 	width = (size_t)ft_atoi((const char *)args->width);
-	if (width > str_len + 2 && args->flag[0] != '-')
+	if (width > str_len + 2 && !MINUS)
 		ft_put_char_times(' ', width - str_len - 2);
 	ft_putstr("0x");
 	ft_putnstr(address_str, str_len);
-	if (width > str_len + 2 && args->flag[0] == '-')
+	if (width > str_len + 2 && MINUS)
 		ft_put_char_times(' ', width - str_len - 2);
 	free(address_str);
 	if (width > str_len + 2)

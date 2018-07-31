@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:15:46 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/27 20:16:21 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/31 00:49:11 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,24 @@ size_t	get_args(va_list ap, char **format)
 	size_t	args_len;
 	t_arg	*args;
 
-	args = (t_arg *) malloc(sizeof(t_arg) * 1);
-	initial_args(args);
-	handle_flag(format, args);
-	handle_width(format, args, ap);
-	handle_precision(format, args, ap);
-	handle_length(format, args);
-	if (!(args_len = handle_specifier(format, args, ap)))
+	if (!(args = (t_arg *)malloc(sizeof(t_arg) * 1)))
 		return (-1);
+	initial_args(args);
+	while (**format)
+	{
+		if (**format == '+' || **format == '-' || **format == '#'
+				|| **format == ' ' || **format == '0')
+			handle_flag(format, args);
+		else if (ft_isdigit(**format))
+			handle_width(format, args, ap);
+		else if (**format == '.')
+			handle_precision(format, args, ap);
+		else if (is_specifier(**format))
+			break;
+		else
+			handle_length(format, args);
+	}
+	args_len = handle_specifier(format, args, ap);
 	free_args(args);
 	return (args_len);
 }
@@ -51,7 +61,7 @@ size_t	print_format(va_list ap, char *format, size_t char_size)
 	{
 		format++;
 		if ((args_len = get_args(ap, &format)) == (size_t)(-1))
-			return (-1);
+			return (0);
 		return (print_format(ap, format, char_size + args_len));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 23:00:59 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/27 23:43:07 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/30 22:36:32 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define FLAG		"arg.flag"
-# define WIDTH		"arg.width"
-# define PRECISION	"arg.precision"
-# define LENGTH		"arg.length"
-# define SPECIFIER	"arg.specifier"
+# define HASH		args->flag[0]
+# define MINUS		args->flag[1]
+# define PLUS		args->flag[2]
+# define SPACE		args->flag[3]
+# define ZERO		args->flag[4]
+# define FLAG		HASH + MINUS + PLUS + SPACE + ZERO
+# define NEGATIVE	args->negative
 
+# define TRUE(x, y)	x > y ? x - y : 0
 typedef struct		s_arg
 {
-	char			*flag;
+	size_t			*flag;
 	char			*width;
 	char			*precision;
 	char			*length;
@@ -49,6 +52,8 @@ size_t				ft_printf(const char *format, ...);
 void				initial_args(t_arg *args);
 void				print_args(t_arg *args);
 void				free_args(t_arg *args);
+void				reset_flag(t_arg *args);
+int					is_specifier(char c);
 
 /*
 ** get_args.c

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 19:02:53 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/27 20:17:54 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/30 23:12:52 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	get_handle_func(t_func *func)
 	func['x'] = &handle_hex;
 	func['X'] = &handle_hex;
 	func['c'] = &handle_char;
+	func['Z'] = &handle_char;
 	func['C'] = &handle_wchar;
 	func['%'] = &handle_escape;
 }

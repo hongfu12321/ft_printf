@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:19:18 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/27 20:37:52 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/30 22:32:57 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ intmax_t	get_signed_nbr_length(va_list ap, t_arg *args)
 	char		*length;
 
 	length = args->length;
-	nbr = va_arg(ap, intmax_t);
-	if (length[0] == 'h' && length[1] != 'h' && args->specifier[0] != 'D')
+	if (!(nbr = va_arg(ap, intmax_t)))
+		return (0);
+	if (!ft_strcmp(length, "h") && args->specifier[0] != 'D')
 		nbr = (short int)nbr;
-	else if ((length[0] == 'l' && length[1] != 'l') || args->specifier[0] == 'D')
+	else if (!ft_strcmp(length, "l") || args->specifier[0] == 'D')
 		nbr = (long int)nbr;
-	else if (length[0] == 'h' && length[1] != 'h')
+	else if (!ft_strcmp(length, "hh"))
 		nbr = (signed char)nbr;
-	else if (length[0] == 'l' && length[1] == 'l')
+	else if (!ft_strcmp(length, "ll"))
 		nbr = (long long int)nbr;
 	else if (length[0] == 'j')
 		nbr = (intmax_t)nbr;
@@ -44,13 +45,13 @@ uintmax_t	get_unsigned_nbr_length(va_list ap, t_arg *args)
 
 	length = args->length;
 	nbr = va_arg(ap, uintmax_t);
-	if (length[0] == 'h' && length[1] != 'h' && args->specifier[0] != 'D')
-		nbr = (unsigned short int)nbr;
-	else if ((length[0] == 'l' && length[1] != 'l') || args->specifier[0] == 'D')
+	if (!ft_strcmp(length, "h") && args->specifier[0] != 'U' && args->specifier[0] != 'O')
+		nbr = (unsigned short)nbr;
+	else if (!ft_strcmp(length, "l") || args->specifier[0] == 'U' || args->specifier[0] == 'O')
 		nbr = (unsigned long int)nbr;
-	else if (length[0] == 'h' && length[1] != 'h')
+	else if (!ft_strcmp(length, "hh"))
 		nbr = (unsigned char)nbr;
-	else if (length[0] == 'l' && length[1] == 'l')
+	else if (!ft_strcmp(length, "ll"))
 		nbr = (unsigned long long int)nbr;
 	else if (length[0] == 'j')
 		nbr = (uintmax_t)nbr;

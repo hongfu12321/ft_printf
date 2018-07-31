@@ -6,13 +6,13 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 21:04:10 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/26 23:31:14 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/30 21:54:21 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(intmax_t value, int base)
 {
 	char	*str;
 	int		size;
