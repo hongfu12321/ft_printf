@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:47:04 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/31 00:49:14 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 15:37:41 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ void	handle_length(char **format, t_arg *args)
 	}
 	if (args->length[0] == 'l' && **format == 'l')
 	{
-		args->length[1] = **format;	
+		args->length[1] = **format;
 		(*format)++;
 	}
 	else if (args->length[0] == 'h' && **format == 'h')
 	{
-		args->length[1] = **format;	
+		args->length[1] = **format;
 		(*format)++;
 	}
 }

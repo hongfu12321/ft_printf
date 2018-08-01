@@ -6,37 +6,36 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 21:04:10 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/30 21:54:21 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 16:05:35 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa_base(intmax_t value, int base)
+char	*ft_itoa_base(intmax_t value, char *base)
 {
 	char	*str;
 	int		size;
-	char	tab[] = "0123456789ABCDEF";
+	int		length;
 	int		flag;
 
 	flag = 0;
 	size = 0;
-	if (base < 2 || base > 16)
+	length = ft_strlen(base);
+	if (length < 2 || length > 16)
 		return (0);
-	if (value < 0 && base == 10)
-		flag = 1;
-	size = ft_intlen_base(value, base) + flag;
+	size = ft_intlen_base(value, length) + flag;
 	str = ft_strnew(size);
-	if (flag == 1)
+	if (value < 0 && length == 10)
 	{
 		str[0] = '-';
 		value = -value;
 	}
 	while (size > flag)
 	{
-		str[size - 1] = tab[value % base];
+		str[size - 1] = base[value % length];
 		size--;
-		value /=base;
+		value /= length;
 	}
 	return (str);
 }

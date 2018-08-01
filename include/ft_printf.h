@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 23:00:59 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/30 22:36:32 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 16:41:17 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@
 # define ZERO		args->flag[4]
 # define FLAG		HASH + MINUS + PLUS + SPACE + ZERO
 # define NEGATIVE	args->negative
-
+# define WIDTH		args->width
+# define PRECISION	args->precision
+# define LENGTH		args->length
+# define SPECIFIER	args->specifier
 # define TRUE(x, y)	x > y ? x - y : 0
+
 typedef struct		s_arg
 {
 	size_t			*flag;
@@ -53,7 +57,14 @@ void				initial_args(t_arg *args);
 void				print_args(t_arg *args);
 void				free_args(t_arg *args);
 void				reset_flag(t_arg *args);
+
+/*
+** is_function.c
+*/
+
 int					is_specifier(char c);
+int					is_length(char c);
+int					is_character(char c);
 
 /*
 ** get_args.c

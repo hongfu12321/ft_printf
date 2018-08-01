@@ -6,34 +6,29 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 02:09:50 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/29 02:35:07 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 15:47:34 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
 #include "../../include/ft_printf.h"
 
-void	print_octal(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision, size_t width)
+size_t	oct_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
-	if (PLUS == 1 || SPACE == 1)
-	{
-		ft_put_char_times(' ', width - precision - 1);
-		PLUS ? write(1, "+", 1) : write(1, " ", 1);
-	}
-	ft_put_char_times('0', TRUE(precision, nbr_len));
-	ft_putnbr_uintmax_t_base(nbr, "01234567");
-}
+	size_t	width;
 
-size_t	handle_octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision, size_t width)
-{
-	if (!ZERO &&!MINUS)
+	width = ft_atoi((const char *)args->width);
+	if (!ZERO && !MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	if (HASH)
-		 write(1, "0", 1);
+		write(1, "0", 1);
 	if (ZERO && !MINUS)
 		ft_put_char_times('0', TRUE(width, (HASH + precision)));
 	if (nbr != 0)
-		print_octal(args, nbr, nbr_len, precision, width);
+	{
+		ft_put_char_times('0', TRUE(precision, nbr_len));
+		ft_putnbr_uintmax_t_base(nbr, "01234567");
+	}
 	if (HASH && nbr == 0)
 		return (1);
 	if (PLUS == 1 || SPACE == 1)
@@ -42,7 +37,7 @@ size_t	handle_octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t prec
 		return (width > precision + HASH ? width - HASH : precision);
 }
 
-size_t	handle_octal_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
+size_t	octal_min(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
 	size_t	width;
@@ -52,7 +47,7 @@ size_t	handle_octal_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t pre
 		length = HASH;
 	else
 		length = 0;
-	length += handle_octal_flag(args, nbr, nbr_len, precision, width);
+	length += oct_flag(args, nbr, nbr_len, precision);
 	if (MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	return (length);
@@ -75,8 +70,8 @@ size_t	handle_octal(va_list ap, t_arg *args)
 	if (HASH == 2)
 		HASH = 1;
 	if (nbr == 0)
-		return (handle_octal_minus(args, nbr, 0, 0));
+		return (octal_min(args, nbr, 0, 0));
 	if (precision < nbr_len || nbr == 0)
-		return (handle_octal_minus(args, nbr, nbr_len, nbr_len));
-	return (handle_octal_minus(args, nbr, nbr_len, precision));
+		return (octal_min(args, nbr, nbr_len, nbr_len));
+	return (octal_min(args, nbr, nbr_len, precision));
 }

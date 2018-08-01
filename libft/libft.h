@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 08:35:54 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/30 21:47:20 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 16:06:14 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-char				*ft_itoa_base(intmax_t value, int base);
+char				*ft_itoa_base(intmax_t value, char *base);
 char				*ft_itoa_base_uint(uintmax_t nb, char *base);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
@@ -126,11 +126,10 @@ void				ft_putwchar(wchar_t c);
 void				ft_putwstr(wchar_t *wstr);
 void				ft_putnwstr(wchar_t *wstr, size_t n);
 
-
 /*
 ** intmax_t uintmax_t
 */
 
-void	ft_putnbr_uintmax_t(uintmax_t nb);
-void	ft_putnbr_uintmax_t_base(uintmax_t value, char *base);
+void				ft_putnbr_uintmax_t(uintmax_t nb);
+void				ft_putnbr_uintmax_t_base(uintmax_t value, char *base);
 #endif

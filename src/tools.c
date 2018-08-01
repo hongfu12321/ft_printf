@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:10:05 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/31 00:32:48 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 16:46:52 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void	initial_args(t_arg *args)
 
 void	print_args(t_arg *args)
 {
-	printf("negative = %d\n", args->negative);
-	printf("hash = %zu\n", args->flag[0]);
-	printf("minus = %zu\n", args->flag[1]);
-	printf("plus = %zu\n", args->flag[2]);
-	printf("space = %zu\n", args->flag[3]);
-	printf("zero = %zu\n", args->flag[4]);
-	printf("width = %s\n", args->width);
-	printf("precision = %s\n", args->precision);
-	printf("length = %s\n", args->length);
-	printf("specifier = %s\n", args->specifier);
+	ft_printf("negative = %d\n", args->negative);
+	ft_printf("hash = %zu\n", args->flag[0]);
+	ft_printf("minus = %zu\n", args->flag[1]);
+	ft_printf("plus = %zu\n", args->flag[2]);
+	ft_printf("space = %zu\n", args->flag[3]);
+	ft_printf("zero = %zu\n", args->flag[4]);
+	ft_printf("width = %s\n", args->width);
+	ft_printf("precision = %s\n", args->precision);
+	ft_printf("length = %s\n", args->length);
+	ft_printf("specifier = %s\n", args->specifier);
 }
 
 void	free_args(t_arg *args)
@@ -60,13 +60,4 @@ void	reset_flag(t_arg *args)
 	SPACE = 0;
 	ZERO = 0;
 	NEGATIVE = 0;
-}
-
-int		is_specifier(char c)
-{
-	if (c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' ||
-		c == 'i' || c == 'o' || c == 'O' || c == 'u' || c == 'U' ||
-		c == 'x' || c == 'X' || c == 'c' || c == 'C' || c == '%')
-		return (1);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 16:19:18 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/30 22:32:57 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 15:56:33 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ uintmax_t	get_unsigned_nbr_length(va_list ap, t_arg *args)
 
 	length = args->length;
 	nbr = va_arg(ap, uintmax_t);
-	if (!ft_strcmp(length, "h") && args->specifier[0] != 'U' && args->specifier[0] != 'O')
+	if (!ft_strcmp(length, "h") && SPECIFIER[0] != 'U' && SPECIFIER[0] != 'O')
 		nbr = (unsigned short)nbr;
-	else if (!ft_strcmp(length, "l") || args->specifier[0] == 'U' || args->specifier[0] == 'O')
+	else if (!ft_strcmp(length, "l") || SPECIFIER[0] == 'U' ||
+			SPECIFIER[0] == 'O')
 		nbr = (unsigned long int)nbr;
 	else if (!ft_strcmp(length, "hh"))
 		nbr = (unsigned char)nbr;

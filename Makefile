@@ -6,31 +6,84 @@
 #    By: fhong <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/27 16:20:58 by fhong             #+#    #+#              #
-#    Updated: 2018/07/30 22:31:39 by fhong            ###   ########.fr        #
+#    Updated: 2018/08/01 13:29:16 by fhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = ft_printf
-W = -Wall -Wextra -Werror
-LIBFT_INCLUDE = ./libft/libft.h
-FT_PRINTF_INCLUDE = ./include/ft_printf.h
-SRC = ./libft/*.c \
-	  ./src/*.c \
-	  ./src/handle/*.c \
 
-OBJ = *.o
+MAKE = make -C
+NAME = libftprintf.a
+LIB = libft/
+FLAGS = -Wall -Wextra -Werror
+CC = gcc
+HEADER = -I /includes
 
+#When compiling. you need to add your .a lib
+CFILES =		src/ft_printf.c\
+				src/get_args.c\
+				src/get_handle_func.c\
+				src/get_nbr_length.c\
+				src/tools.c\
+				src/is_function.c\
+				src/handle/handle_int.c\
+				src/handle/handle_char.c\
+				src/handle/handle_wchar.c\
+				src/handle/handle_str.c\
+				src/handle/handle_wstr.c\
+				src/handle/handle_hex.c\
+				src/handle/handle_ptr.c\
+				src/handle/handle_octal.c\
+				src/handle/handle_unsigned.c\
+				src/handle/handle_escape.c\
+
+#These options are here in case the lib needs to be recompiled.
+#LIBM, LIBC, LIBF will run rules re, clean and fclean inside the libft folder
+LIBM = $(MAKE) $(LIB)
+LIBR = $(MAKE) $(LIB) re
+LIBC = $(MAKE) $(LIB) clean
+LIBF = $(MAKE) $(LIB) fclean
+OBJECTS = $(CFILES:.c=.o)
+OBJ_DIR = objects
+
+DFLAGS = $(CFLAGS) -g $(LIBD) $(CFILES) -o
+DNAME = $(NAME)_debug
+DOBJS = $(CFILES:.c = .o)
+# export DRAGS=01.map
 all: $(NAME)
+
 $(NAME):
-	make -C libft
-	gcc -o $(NAME) $(SRC) -Llibft -lft -I ft_printf.h
+	@$(LIBM)
+	@$(CC) $(FLAGS) -c $(CFILES) $(HEADER)
+	@cp libft/libft.a $(NAME)
+	@ar rcs $(NAME) *.o
+	@ranlib $(NAME)
+	@mkdir $(OBJ_DIR)
+	@mv *.o $(OBJ_DIR)
+	@echo "\033[33mLib File \"libftprintf.a\" Created\033[0m"
 
 clean:
-	make clean -C libft
-	/bin/rm -f $(OBJ)
+	@$(LIBC)
+	@/bin/rm -rf $(OBJ_DIR)
+	@echo "\033[31mft_printf Object File Removed\033[0m"
 
-fclean: clean
-	make fclean -C libft
-	/bin/rm -f $(NAME)
+fclean:
+	@$(LIBF)
+	@/bin/rm -f $(NAME) *.a
+	@/bin/rm -rf $(OBJ_DIR)
+	@rm -rf $(NAME)
+	@rm -f $(DNAME)
+	@rm -rf $(DNAME).dSYM
+	@echo "\033[31mft_printf: Removed exacutable & .o files\033[0m"
 
 re: fclean all
-.PHONY: all clean fclean re
+
+
+
+debug: $(DNAME)
+
+$(DNAME): fclean
+	@$(LIBM)
+	$(CC) $(DFLAGS) $(DNAME)
+	# lldb $(DNAME) $(DARGS)
+
+# tell Make that they're not associated with files
+.PHONY: all clean fclean re debug
