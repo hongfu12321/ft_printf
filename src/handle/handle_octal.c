@@ -6,19 +6,22 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 02:09:50 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/31 22:55:59 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 00:46:10 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
 #include "../../include/ft_printf.h"
 
-size_t	handle_octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision, size_t width)
+size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
-	if (!ZERO &&!MINUS)
+	size_t width;
+
+	width = ft_atoi((const char *)args->width);
+	if (!ZERO && !MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	if (HASH)
-		 write(1, "0", 1);
+		write(1, "0", 1);
 	if (ZERO && !MINUS)
 		ft_put_char_times('0', TRUE(width, (HASH + precision)));
 	if (nbr != 0)
@@ -34,7 +37,7 @@ size_t	handle_octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t prec
 		return (width > precision + HASH ? width - HASH : precision);
 }
 
-size_t	handle_octal_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
+size_t	octal_min(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
 	size_t	width;
@@ -44,7 +47,7 @@ size_t	handle_octal_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t pre
 		length = HASH;
 	else
 		length = 0;
-	length += handle_octal_flag(args, nbr, nbr_len, precision, width);
+	length += octal_flag(args, nbr, nbr_len, precision);
 	if (MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	return (length);
@@ -67,8 +70,8 @@ size_t	handle_octal(va_list ap, t_arg *args)
 	if (HASH == 2)
 		HASH = 1;
 	if (nbr == 0)
-		return (handle_octal_minus(args, nbr, 0, 0));
+		return (octal_min(args, nbr, 0, 0));
 	if (precision < nbr_len || nbr == 0)
-		return (handle_octal_minus(args, nbr, nbr_len, nbr_len));
-	return (handle_octal_minus(args, nbr, nbr_len, precision));
+		return (octal_min(args, nbr, nbr_len, nbr_len));
+	return (octal_min(args, nbr, nbr_len, precision));
 }

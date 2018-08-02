@@ -6,14 +6,14 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/28 21:26:30 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/31 20:50:33 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 00:42:35 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
 #include "../../include/ft_printf.h"
 
-size_t	handle_unsigned_print(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
+size_t	uint_print(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	width;
 
@@ -49,6 +49,6 @@ size_t	handle_unsigned(va_list ap, t_arg *args)
 	if (nbr == 0 && args->precision[0])
 		nbr_len = 0;
 	if (precision < nbr_len)
-		return (handle_unsigned_print(args, nbr, nbr_len, nbr_len));
-	return (handle_unsigned_print(args, nbr, nbr_len, precision));
+		return (uint_print(args, nbr, nbr_len, nbr_len));
+	return (uint_print(args, nbr, nbr_len, precision));
 }
