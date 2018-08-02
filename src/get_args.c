@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:47:04 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 15:37:41 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 15:15:57 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,18 @@ void	handle_width(char **format, t_arg *args, va_list ap)
 		(*format)++;
 	}
 	else
+	{
 		while (ft_isdigit(**format))
 		{
 			buf = ft_strnew(1);
 			ft_strncpy(buf, *format, 1);
 			tmp = args->width;
 			args->width = ft_strjoin(args->width, buf);
-			free(tmp);
 			free(buf);
 			(*format)++;
 		}
+		free(tmp);
+	}
 }
 
 void	handle_precision(char **format, t_arg *args, va_list ap)
@@ -68,25 +70,25 @@ void	handle_precision(char **format, t_arg *args, va_list ap)
 
 	if (**format == '.')
 	{
+		tmp = PRECISION;
 		(*format)++;
 		if (**format == '*')
 		{
-			args->precision = ft_strjoin(args->precision, va_arg(ap, char *));
+			PRECISION = ft_strjoin(PRECISION, va_arg(ap, char *));
 			(*format)++;
 		}
 		else if (ft_isdigit(**format))
 			while (ft_isdigit(**format))
 			{
-				tmp = args->precision;
-				buf = ft_strnew(1);
-				ft_strncpy(buf, *format, 1);
-				args->precision = ft_strjoin(args->precision, buf);
-				free(tmp);
+				tmp = PRECISION;
+				ft_strncpy((buf = ft_strnew(1)), *format, 1);
+				PRECISION = ft_strjoin(PRECISION, buf);
 				free(buf);
 				(*format)++;
 			}
 		else
-			args->precision[0] = '#';
+			PRECISION = ft_strjoin(PRECISION, "#");
+		free(tmp);
 	}
 }
 
@@ -95,17 +97,17 @@ void	handle_length(char **format, t_arg *args)
 	if (**format == 'h' || **format == 'l' || **format == 'j' ||
 			**format == 'z' || **format == 't' || **format == 'L')
 	{
-		args->length[0] = **format;
+		LENGTH[0] = **format;
 		(*format)++;
 	}
-	if (args->length[0] == 'l' && **format == 'l')
+	if (LENGTH[0] == 'l' && **format == 'l')
 	{
-		args->length[1] = **format;
+		LENGTH[1] = **format;
 		(*format)++;
 	}
-	else if (args->length[0] == 'h' && **format == 'h')
+	else if (LENGTH[0] == 'h' && **format == 'h')
 	{
-		args->length[1] = **format;
+		LENGTH[1] = **format;
 		(*format)++;
 	}
 }
