@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:10:05 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 16:46:52 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 14:45:49 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	print_args(t_arg *args)
 
 void	free_args(t_arg *args)
 {
-	ft_memdel((void **)&args->flag);
-	ft_memdel((void **)&args->width);
-	ft_memdel((void **)&args->precision);
-	ft_memdel((void **)&args->length);
-	ft_memdel((void **)&args->specifier);
+//	ft_memdel((void **)&args->flag);
+//	ft_memdel((void **)&args->width);
+//	ft_memdel((void **)&args->precision);
+//	ft_memdel((void **)&args->length);
+//	ft_memdel((void **)&args->specifier);
 	ft_memdel((void **)&args);
 }
 
