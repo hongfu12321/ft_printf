@@ -6,14 +6,14 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:43:55 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 15:50:47 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 21:42:55 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libft/libft.h"
 #include "../../include/ft_printf.h"
 
-size_t	int_print(t_arg *args, intmax_t nbr, size_t nbr_len, size_t precision)
+size_t	handle_int_print(t_arg *args, intmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	width;
 	size_t	length;
@@ -21,7 +21,7 @@ size_t	int_print(t_arg *args, intmax_t nbr, size_t nbr_len, size_t precision)
 	length = (SPACE == 1 || PLUS == 1 || NEGATIVE) ? 1 : 0;
 	width = ft_atoi((const char *)args->width);
 	if (MINUS == 0 && (ZERO == 0 || args->precision[0]))
-		ft_put_char_times(' ', TRUE(width, (length + precision)));
+			ft_put_char_times(' ', TRUE(width, (length + precision)));	
 	if (length == 1)
 	{
 		if (NEGATIVE && nbr != 0)
@@ -60,6 +60,6 @@ size_t	handle_int(va_list ap, t_arg *args)
 	if (nbr == 0 && args->precision[0])
 		nbr_len = 0;
 	if (precision < nbr_len)
-		return (int_print(args, nbr, nbr_len, nbr_len));
-	return (int_print(args, nbr, nbr_len, precision));
+		return (handle_int_print(args, nbr, nbr_len, nbr_len));
+	return (handle_int_print(args, nbr, nbr_len, precision));
 }
