@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 22:06:34 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 15:59:34 by fhong            ###   ########.fr       */
+/*   Updated: 2018/07/31 10:34:35 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void	hex_output(uintmax_t nbr, char specifier)
 		ft_putnbr_uintmax_t_base(nbr, "0123456789ABCDEF");
 }
 
-void	print_hex(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
+void	print_hex(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision, size_t width)
 {
-	size_t	width;
-
-	width = ft_atoi((const char *)args->width);
 	if (PLUS == 1 || SPACE == 1)
 	{
 		ft_put_char_times(' ', width - precision - 1);
@@ -35,26 +32,23 @@ void	print_hex(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 	hex_output(nbr, args->specifier[0]);
 }
 
-size_t	hex_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
+size_t	handle_hex_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision, size_t width)
 {
-	size_t	width;
-
-	width = ft_atoi((const char *)args->width);
-	if (!ZERO && !MINUS)
+	if (!ZERO &&!MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	if (HASH && nbr != 0)
 		args->specifier[0] == 'x' ? write(1, "0x", 2) : write(1, "0X", 2);
 	if (ZERO && !MINUS)
 		ft_put_char_times('0', TRUE(width, (HASH + precision)));
 	if (nbr != 0)
-		print_hex(args, nbr, nbr_len, precision);
+		print_hex(args, nbr, nbr_len, precision, width);
 	if (PLUS == 1 || SPACE == 1)
 		return (width > HASH + precision + 1 ? width - HASH : precision + 1);
 	else
 		return (width > precision + HASH ? width - HASH : precision);
 }
 
-size_t	hex_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
+size_t	handle_hex_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
 	size_t	width;
@@ -64,7 +58,7 @@ size_t	hex_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 		length = HASH;
 	else
 		length = 0;
-	length += hex_flag(args, nbr, nbr_len, precision);
+	length += handle_hex_flag(args, nbr, nbr_len, precision, width);
 	if (MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	return (length);
@@ -85,8 +79,8 @@ size_t	handle_hex(va_list ap, t_arg *args)
 		return (1);
 	}
 	if (nbr == 0)
-		return (hex_minus(args, nbr, 0, 0));
+		return (handle_hex_minus(args, nbr, 0, 0));
 	if (precision < nbr_len || nbr == 0)
-		return (hex_minus(args, nbr, nbr_len, nbr_len));
-	return (hex_minus(args, nbr, nbr_len, precision));
+		return (handle_hex_minus(args, nbr, nbr_len, nbr_len));
+	return (handle_hex_minus(args, nbr, nbr_len, precision));
 }

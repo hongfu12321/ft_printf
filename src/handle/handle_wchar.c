@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:55:36 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/31 20:44:08 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 23:00:54 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	handle_wchar(va_list ap, t_arg *args)
 	wchar_t	wc;
 	size_t	width;
 
-	wc = va_arg(ap, int);
+	wc = va_arg(ap, wchar_t);
 	width = (size_t)ft_atoi((const char *)args->width);
 	if (!MINUS && width > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 22:24:59 by fhong             #+#    #+#             */
-/*   Updated: 2018/07/31 21:41:13 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 00:16:14 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ size_t	handle_wstr(va_list ap, t_arg *args)
 	size_t	precision;
 	size_t	str_len;
 
-	if (!ft_strcmp((const char *)args->length, "l"))
-		return (handle_wstr(ap, args));
 	wstr = va_arg(ap, wchar_t *);
 	precision = ft_atoi((const char *)args->precision);
 	str_len = ft_wstrlen(wstr);

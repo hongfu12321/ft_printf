@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 21:34:08 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 15:19:36 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 00:15:38 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	handle_str_width(t_arg *args, char *str, size_t str_len)
 			if (ZERO == 0)
 				ft_put_char_times(' ', TRUE(width, str_len));
 			else
-				ft_put_char_times('0', TRUE(width, str_len));
+				ft_put_char_times(' ', TRUE(width, str_len));
 		}
 		ft_putnstr(str, str_len);
 		if (MINUS)
