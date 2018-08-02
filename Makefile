@@ -6,7 +6,7 @@
 #    By: fhong <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/27 16:20:58 by fhong             #+#    #+#              #
-#    Updated: 2018/08/01 13:29:16 by fhong            ###   ########.fr        #
+#    Updated: 2018/08/02 00:53:03 by fhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 LIB = libft/
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
-HEADER = -I /includes
+HEADER = -I /include
 
 #When compiling. you need to add your .a lib
 CFILES =		src/ft_printf.c\
