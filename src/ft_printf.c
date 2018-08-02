@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:15:46 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 16:51:19 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/01 21:52:49 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ size_t	get_args(va_list ap, char **format)
 	initial_args(args);
 	get_args_save_line(ap, format, args);
 	args_len = handle_specifier(format, args, ap);
-	free_args(args);
+//	free_args(args);
 	return (args_len);
 }
 
