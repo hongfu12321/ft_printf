@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 02:09:50 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:41:48 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:53:36 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 size_t	octal_min(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
-	size_t width;
+	size_t	width;
 
 	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;
 	if (nbr != 0)
@@ -57,7 +57,9 @@ size_t	handle_octal(va_list ap, t_arg *args)
 {
 	uintmax_t	nbr;
 	size_t		nbr_len;
+	size_t		precision;
 
+	precision = (PRECISION == -1) ? 0 : (size_t)PRECISION;
 	nbr = get_unsigned_nbr_length(ap, args);
 	nbr_len = ft_intlen_base(nbr, 8);
 	if (nbr == 0 && (WIDTH == -1 && PRECISION == -1))
@@ -69,7 +71,7 @@ size_t	handle_octal(va_list ap, t_arg *args)
 		HASH = 1;
 	if (nbr == 0)
 		return (octal_min(args, nbr, 0, 0));
-	if ((size_t)PRECISION < nbr_len || nbr == 0)
+	if (precision < nbr_len || nbr == 0)
 		return (octal_min(args, nbr, nbr_len, nbr_len));
 	return (octal_min(args, nbr, nbr_len, PRECISION));
 }

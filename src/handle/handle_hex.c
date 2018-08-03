@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 22:06:34 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:41:58 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:56:14 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ size_t	handle_hex(va_list ap, t_arg *args)
 {
 	uintmax_t	nbr;
 	size_t		nbr_len;
+	size_t		precision;
 
+	precision = (PRECISION == -1) ? 0 : (size_t)PRECISION;
 	nbr = get_unsigned_nbr_length(ap, args);
 	nbr_len = ft_uintlen_base(nbr, 16);
 	if (nbr == 0 && PRECISION == -1 && WIDTH == -1)
@@ -76,7 +78,7 @@ size_t	handle_hex(va_list ap, t_arg *args)
 	}
 	if (nbr == 0)
 		return (hex_minus(args, nbr, 0, 0));
-	if ((size_t)PRECISION < nbr_len || nbr == 0)
+	if (precision < nbr_len || nbr == 0)
 		return (hex_minus(args, nbr, nbr_len, nbr_len));
 	return (hex_minus(args, nbr, nbr_len, PRECISION));
 }
