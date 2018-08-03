@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 02:09:50 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 00:46:10 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:41:48 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../../include/ft_printf.h"
 
 size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
-{
+{ 
 	size_t width;
 
-	width = ft_atoi((const char *)args->width);
+	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;
 	if (!ZERO && !MINUS)
 		ft_put_char_times(' ', TRUE(width, (HASH + precision)));
 	if (HASH)
@@ -32,7 +32,7 @@ size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 	if (HASH && nbr == 0)
 		return (1);
 	if (PLUS == 1 || SPACE == 1)
-		return (width - HASH > precision + 1 ? width - HASH : precision + 1);
+		return (width > HASH + precision + 1 ? width - HASH : precision + 1);
 	else
 		return (width > precision + HASH ? width - HASH : precision);
 }
@@ -40,9 +40,9 @@ size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 size_t	octal_min(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
-	size_t	width;
+	size_t width;
 
-	width = ft_atoi((const char *)args->width);
+	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;
 	if (nbr != 0)
 		length = HASH;
 	else
@@ -56,13 +56,11 @@ size_t	octal_min(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 size_t	handle_octal(va_list ap, t_arg *args)
 {
 	uintmax_t	nbr;
-	size_t		precision;
 	size_t		nbr_len;
 
 	nbr = get_unsigned_nbr_length(ap, args);
-	precision = ft_atoi((const char *)args->precision);
 	nbr_len = ft_intlen_base(nbr, 8);
-	if (nbr == 0 && (!args->width[0] && !args->precision[0]))
+	if (nbr == 0 && (WIDTH == -1 && PRECISION == -1))
 	{
 		write(1, "0", 1);
 		return (1);
@@ -71,7 +69,7 @@ size_t	handle_octal(va_list ap, t_arg *args)
 		HASH = 1;
 	if (nbr == 0)
 		return (octal_min(args, nbr, 0, 0));
-	if (precision < nbr_len || nbr == 0)
+	if ((size_t)PRECISION < nbr_len || nbr == 0)
 		return (octal_min(args, nbr, nbr_len, nbr_len));
-	return (octal_min(args, nbr, nbr_len, precision));
+	return (octal_min(args, nbr, nbr_len, PRECISION));
 }

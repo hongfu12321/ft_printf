@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:15:46 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 15:04:16 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:08:20 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	get_args_save_line(va_list ap, char **format, t_arg *args)
 				|| **format == ' ' || **format == '0')
 			handle_flag(format, args);
 		else if (ft_isdigit(**format))
-			WIDTH[0] == '\0' ? handle_width(format, args, ap) : (*format)++;
+			WIDTH == -1 ? handle_width(format, args, ap) : (*format)++;
 		else if (**format == '.')
-			!PRECISION[0] ? handle_precision(format, args, ap) : (*format)++;
+			PRECISION == -1 ? handle_precision(format, args, ap) : (*format)++;
 		else if (is_length(**format))
-			!LENGTH[0] ? handle_length(format, args) : (*format)++;
+			!LENGTH ? handle_length(format, args) : (*format)++;
 		else if (is_character(**format) && !is_length(**format))
 		{
-			SPECIFIER[0] = **format;
+			SPECIFIER = **format;
 			if (is_specifier(**format))
 				break ;
 			(*format)++;
@@ -48,7 +48,7 @@ size_t	get_args(va_list ap, char **format)
 	initial_args(args);
 	get_args_save_line(ap, format, args);
 	args_len = handle_specifier(format, args, ap);
-	free_args(args);
+	free(args);
 	return (args_len);
 }
 

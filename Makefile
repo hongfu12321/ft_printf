@@ -6,7 +6,7 @@
 #    By: fhong <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/27 16:20:58 by fhong             #+#    #+#              #
-#    Updated: 2018/08/02 14:39:05 by fhong            ###   ########.fr        #
+#    Updated: 2018/08/01 16:51:44 by fhong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 LIB = libft/
 FLAGS = -Wall -Wextra -Werror
 CC = gcc
-HEADER = -I /include
+HEADER = -I /includes
 
 #When compiling. you need to add your .a lib
 CFILES =		src/ft_printf.c\
@@ -52,7 +52,7 @@ all: $(NAME)
 
 $(NAME):
 	@$(LIBM)
-	@$(CC) $(FLAG) -c $(CFILES) $(HEADER)
+	@$(CC) $(FLAGS) -c $(CFILES) $(HEADER)
 	@cp libft/libft.a $(NAME)
 	@ar rcs $(NAME) *.o
 	@ranlib $(NAME)

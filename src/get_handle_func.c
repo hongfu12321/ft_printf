@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 19:02:53 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 14:46:06 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:06:26 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ size_t		handle_specifier(char **format, t_arg *args, va_list ap)
 	static t_func	funcs[128] = {0};
 	char			c;
 
-	c = args->specifier[0];
+	c = SPECIFIER;
 	if (is_specifier(c))
 		get_handle_func(funcs);
-	else if (is_character(args->specifier[0]))
+	else if (is_character(SPECIFIER))
 		return (handle_char(ap, args));
 	else
 	{
