@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 13:15:46 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:08:20 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 18:32:52 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_args_save_line(va_list ap, char **format, t_arg *args)
 		if (**format == '+' || **format == '-' || **format == '#'
 				|| **format == ' ' || **format == '0')
 			handle_flag(format, args);
-		else if (ft_isdigit(**format))
+		else if (ft_isdigit(**format) || **format == '*')
 			WIDTH == -1 ? handle_width(format, args, ap) : (*format)++;
 		else if (**format == '.')
 			PRECISION == -1 ? handle_precision(format, args, ap) : (*format)++;
