@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 22:06:34 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:56:14 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 18:06:56 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ size_t	hex_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 size_t	hex_minus(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
+
 	if (nbr != 0)
 		length = HASH;
 	else

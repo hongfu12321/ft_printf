@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 02:09:50 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:53:36 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 18:05:44 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../include/ft_printf.h"
 
 size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
-{ 
+{
 	size_t width;
 
 	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;

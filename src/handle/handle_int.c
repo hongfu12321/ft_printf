@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:43:55 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:38:15 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 18:06:05 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 size_t	int_print(t_arg *args, intmax_t nbr, size_t nbr_len, size_t precision)
 {
 	size_t	length;
-	size_t width;
+	size_t	width;
 
 	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;
 	length = (SPACE == 1 || PLUS == 1 || NEGATIVE) ? 1 : 0;

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 21:34:08 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:38:40 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 18:06:37 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 size_t	handle_str_width(t_arg *args, char *str, size_t str_len)
 {
-	if (!*str)
-		str_len = 0;
 	size_t width;
 
+	if (!*str)
+		str_len = 0;
 	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;
 	if (width > str_len)
 	{
