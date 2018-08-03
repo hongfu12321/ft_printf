@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 23:55:36 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/01 23:00:54 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:36:27 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,19 @@
 size_t	handle_wchar(va_list ap, t_arg *args)
 {
 	wchar_t	wc;
-	size_t	width;
 
 	wc = va_arg(ap, wchar_t);
-	width = (size_t)ft_atoi((const char *)args->width);
-	if (!MINUS && width > 0)
+	if (!MINUS && WIDTH > 0)
 	{
 		if (ZERO)
-			ft_put_char_times('0', width - 1);
+			ft_put_char_times('0', WIDTH - 1);
 		else
-			ft_put_char_times(' ', width - 1);
+			ft_put_char_times(' ', WIDTH - 1);
 	}
 	ft_putwchar(wc);
-	if (MINUS && width > 0)
-		ft_put_char_times(' ', width - 1);
-	if (width == 0)
-		return (1);
-	return (width);
+	if (MINUS && WIDTH > 0)
+		ft_put_char_times(' ', WIDTH - 1);
+	if (WIDTH > 0)
+		return ((size_t)WIDTH);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 21:34:08 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 00:15:38 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/02 17:38:40 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 size_t	handle_str_width(t_arg *args, char *str, size_t str_len)
 {
-	size_t width;
-
 	if (!*str)
 		str_len = 0;
-	width = (size_t)ft_atoi((const char *)args->width);
+	size_t width;
+
+	width = (WIDTH == -1) ? 0 : (size_t)WIDTH;
 	if (width > str_len)
 	{
 		if (!MINUS)
@@ -42,16 +42,14 @@ size_t	handle_str_width(t_arg *args, char *str, size_t str_len)
 size_t	handle_str(va_list ap, t_arg *args)
 {
 	char	*str;
-	size_t	precision;
 	size_t	str_len;
 
-	if (!ft_strcmp((const char *)args->length, "l"))
+	if (LENGTH == 'l')
 		return (handle_wstr(ap, args));
 	if (!(str = va_arg(ap, char *)))
 		str = "(null)";
-	precision = ft_atoi((const char *)args->precision);
 	str_len = ft_strlen(str);
-	if (args->precision[0])
-		return (handle_str_width(args, str, precision));
+	if (PRECISION != -1)
+		return (handle_str_width(args, str, PRECISION));
 	return (handle_str_width(args, str, str_len));
 }
