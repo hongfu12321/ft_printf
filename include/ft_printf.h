@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 23:00:59 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 17:18:07 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/09 22:53:29 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_arg
 	char			specifier;
 }					t_arg;
 
-typedef size_t		(*t_func)(va_list, t_arg *);
+typedef size_t		(*t_func)(va_list ap, t_arg *args);
 
 /*
 **	main.c
