@@ -6,7 +6,7 @@
 /*   By: fhong <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/29 02:09:50 by fhong             #+#    #+#             */
-/*   Updated: 2018/08/02 18:05:44 by fhong            ###   ########.fr       */
+/*   Updated: 2018/08/15 20:22:00 by fhong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	octal_flag(t_arg *args, uintmax_t nbr, size_t nbr_len, size_t precision)
 		ft_put_char_times('0', TRUE(width, (HASH + precision)));
 	if (nbr != 0)
 	{
-		ft_put_char_times('0', TRUE(precision, nbr_len));
+		ft_put_char_times('0', TRUE(precision - HASH, nbr_len));
 		ft_putnbr_uintmax_t_base(nbr, "01234567");
 	}
 	if (HASH && nbr == 0)
